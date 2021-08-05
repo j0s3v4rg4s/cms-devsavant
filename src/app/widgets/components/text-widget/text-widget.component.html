@@ -1,0 +1,18 @@
+<div *ngIf="isEdit" class="container">
+  <ngx-editor-menu [editor]="editor" style="flex-wrap: wrap"></ngx-editor-menu>
+  <ngx-editor
+    [editor]="editor"
+    [placeholder]="'Type here...'"
+    [outputFormat]="'html'"
+    [(ngModel)]="text"
+    (ngModelChange)="change()"
+  ></ngx-editor>
+  <button appIconBtn color="error" class="delete" (click)="delete()">
+    <span class="material-icons">
+      close
+    </span>
+  </button>
+</div>
+
+<div *ngIf="!isEdit" [innerHTML]="htmlSanitizer">
+</div>

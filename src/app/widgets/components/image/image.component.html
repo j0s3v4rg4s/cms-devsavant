@@ -1,0 +1,16 @@
+<div class="container">
+  <label class="label">
+    <input *ngIf="isEdit" type="file" accept="image/*" (change)="changeImage($event.target)">
+    <span *ngIf="!src" class="material-icons label__icon">person</span>
+    <img *ngIf="src" [src]="src" alt="avatar" class="label__img">
+  </label>
+  <button *ngIf="isEdit" appIconBtn color="error" class="close" (click)="delete()">
+    <span class="material-icons">
+      close
+    </span>
+  </button>
+</div>
+
+
+
+

@@ -1,0 +1,28 @@
+<div class="widgets">
+  <ng-container *ngFor="let widget of widgets; let i = index;">
+    <app-image
+      *ngIf="widget.type === widgetTypes.IMG"
+      [(src)]="widget.src"
+      [isEdit]="true"
+      (deleteWidget)="removeWidget(i)">
+    </app-image>
+    <app-text-widget
+      *ngIf="widget.type === widgetTypes.TEXT"
+      [isEdit]="true"
+      [(text)]="widget.text"
+      (deleteWidget)="removeWidget(i)">
+    </app-text-widget>
+    <app-hello-widget
+      *ngIf="widget.type === widgetTypes.HELLO"
+      [isEdit]="true"
+      (deleteWidget)="removeWidget(i)">
+    </app-hello-widget>
+  </ng-container>
+</div>
+
+<div class="options">
+  <button appBtn color="secondary" (click)="addImageWidget()">Add image</button>
+  <button appBtn color="secondary" (click)="addTextWidget()">Add text</button>
+  <button appBtn color="secondary" (click)="addHelloWidget()">Add hello</button>
+  <button appBtn color="primary" (click)="save()">Save</button>
+</div>

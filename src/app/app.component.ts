@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Widgets} from './widgets/interfaces/widget';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'cms-editor';
+  isEditMode = true;
+  widgets: Widgets[] = []
+
+  openEditMode() {
+    this.isEditMode = true;
+  }
+
+  closeEditMode() {
+    this.isEditMode = false;
+  }
+
+  saveData(widgets: Widgets[]) {
+    this.closeEditMode();
+    this.widgets = widgets;
+  }
 }

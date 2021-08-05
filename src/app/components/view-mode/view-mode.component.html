@@ -1,0 +1,7 @@
+<div class="widgets">
+  <ng-container *ngFor="let widget of widgets">
+    <app-image *ngIf="widget.type === widgetTypes.IMG" [(src)]="widget.src"></app-image>
+    <app-text-widget *ngIf="widget.type === widgetTypes.TEXT" [(text)]="widget.text"></app-text-widget>
+    <app-hello-widget *ngIf="widget.type === widgetTypes.HELLO" [userName]="userName"></app-hello-widget>
+  </ng-container>
+</div>

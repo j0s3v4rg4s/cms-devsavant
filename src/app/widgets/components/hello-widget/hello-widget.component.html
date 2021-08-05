@@ -1,0 +1,10 @@
+<div class="container">
+  <span>
+    Hello {{ isEdit ? '[User name]' : userName }}, your last log in was in {{ date | date: 'medium' }}
+  </span>
+  <button appIconBtn color="error" class="remove" (click)="delete()" *ngIf="isEdit">
+    <span class="material-icons">
+      close
+    </span>
+  </button>
+</div>
