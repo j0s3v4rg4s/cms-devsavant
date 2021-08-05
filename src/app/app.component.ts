@@ -7,7 +7,7 @@ import {Widgets} from './widgets/interfaces/widget';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isEditMode = true;
+  isEditMode = false;
   widgets: Widgets[] = []
 
   openEditMode() {
