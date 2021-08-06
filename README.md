@@ -9,6 +9,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. Install dependencies `npm install`
 2. Execute the project on dev mode `npm run start`
 
+##  Unit test
+The unit test was generated with jest and [testing-library.js](https://testing-library.com/)
+
+To run the test `npm run test`
+
 ## Demo
 
 https://user-images.githubusercontent.com/6579616/128394556-c20e3fae-a39c-4d36-a18a-df029fb816f3.mp4
