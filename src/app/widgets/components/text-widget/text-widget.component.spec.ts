@@ -1,25 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TextWidgetComponent } from './text-widget.component';
+import {NgxEditorModule} from 'ngx-editor';
+import {render, screen} from '@testing-library/angular';
+import {FormsModule} from '@angular/forms';
 
 describe('TextWidgetComponent', () => {
-  let component: TextWidgetComponent;
-  let fixture: ComponentFixture<TextWidgetComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TextWidgetComponent ]
+  it('should have a remove bottom', async () => {
+    await render(TextWidgetComponent, {
+      componentProperties: {
+        isEdit: true
+      },
+      imports: [NgxEditorModule, FormsModule]
     })
-    .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TextWidgetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(screen.getByRole('button', {name: /close/})).toBeTruthy()
+  })
 });
