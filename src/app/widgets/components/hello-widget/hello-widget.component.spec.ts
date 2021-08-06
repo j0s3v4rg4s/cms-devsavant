@@ -1,25 +1,37 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 
 import { HelloWidgetComponent } from './hello-widget.component';
 
 describe('HelloWidgetComponent', () => {
-  let component: HelloWidgetComponent;
-  let fixture: ComponentFixture<HelloWidgetComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ HelloWidgetComponent ]
-    })
-    .compileComponents();
+  it('should create', async () => {
+    await render(HelloWidgetComponent, {
+      componentProperties: {
+        userName: 'testName'
+      }
+    });
+
+    expect(screen.getByText(/testName/i)).toBeInTheDocument()
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HelloWidgetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should show remove button on edit mode', async () => {
+    await render(HelloWidgetComponent, {
+      componentProperties: {
+        userName: 'testName',
+        isEdit: true
+      }
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(screen.queryByText(/close/i)).toBeInTheDocument()
+  })
+
+  it('should not show remove button on read mode', async () => {
+    await render(HelloWidgetComponent, {
+      componentProperties: {
+        userName: 'testName',
+        isEdit: false
+      }
+    });
+    expect(screen.queryByText(/close/i)).not.toBeInTheDocument()
+  })
 });
