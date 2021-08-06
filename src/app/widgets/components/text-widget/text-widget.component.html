@@ -4,8 +4,7 @@
     [editor]="editor"
     [placeholder]="'Type here...'"
     [outputFormat]="'html'"
-    [(ngModel)]="text"
-    (ngModelChange)="change()"
+    [ngModel]="text"
   ></ngx-editor>
   <button appIconBtn color="error" class="delete" (click)="delete()">
     <span class="material-icons">

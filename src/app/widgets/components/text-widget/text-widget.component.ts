@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges} from '@angular/core';
-import { Editor } from 'ngx-editor';
+import { Editor, toHTML  } from 'ngx-editor';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
@@ -7,7 +7,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
   templateUrl: './text-widget.component.html',
   styleUrls: ['./text-widget.component.scss']
 })
-export class TextWidgetComponent implements OnChanges, OnDestroy {
+export class  TextWidgetComponent implements OnChanges, OnDestroy {
   @Input() text = '';
   @Input() isEdit = false;
   @Output() textChange = new EventEmitter<string>()
@@ -16,7 +16,12 @@ export class TextWidgetComponent implements OnChanges, OnDestroy {
   editor = new Editor();
   htmlSanitizer: SafeHtml | undefined;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) {
+    this.editor.valueChanges.subscribe(data => {
+      const html = toHTML(data);
+      this.textChange.emit(html);
+    })
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const textChange = changes['text'];
@@ -27,10 +32,6 @@ export class TextWidgetComponent implements OnChanges, OnDestroy {
 
   ngOnDestroy(): void {
     this.editor.destroy();
-  }
-
-  change() {
-    this.textChange.emit(this.text);
   }
 
   delete() {
